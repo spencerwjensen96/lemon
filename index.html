@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lemon | Squeeze More Out of Every Order</title>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <style>
+        :root {
+            /* Modern color palette */
+            --lemon: #ffd01f;
+            --lime: #00c16e;
+            --bg-light: #f9fafb;
+            --bg-white: #ffffff;
+            --text-primary: #1a1a1a;
+            --text-secondary: #4b5563;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
+            --radius-md: 1rem;
+            --max-width: 1200px;
+            --header-height: 4rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            color: var(--text-primary);
+            line-height: 1.5;
+            background: var(--bg-light);
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: var(--header-height);
+            background: var(--bg-white);
+            box-shadow: var(--shadow-sm);
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .navbar-content {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 2rem;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--lime);
+        }
+
+        .hero {
+            display: grid;
+            place-items: center;
+            padding: 8rem 2rem;
+            background: linear-gradient(135deg, var(--lemon) 0%, #fff4bd 100%);
+            margin-top: var(--header-height);
+        }
+
+        .hero-content {
+            max-width: var(--max-width);
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            font-size: clamp(1.1rem, 2vw, 1.5rem);
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .features {
+            padding: 8rem 2rem;
+            background: var(--bg-white);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: var(--bg-white);
+            padding: 2rem;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-md);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-card h3 {
+            color: var(--lime);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .comparison {
+            max-width: var(--max-width);
+            margin: 4rem auto;
+            padding: 2rem;
+        }
+
+        .comparison h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+        }
+
+        .comparison table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: var(--bg-white);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+
+        .comparison th {
+            background: var(--lime);
+            color: white;
+            padding: 1.5rem;
+            text-align: left;
+        }
+
+        .comparison td {
+            padding: 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .comparison tr:last-child td {
+            border-bottom: none;
+        }
+
+        .cta {
+            background: var(--lime);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 2rem;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,193,110,0.2);
+        }
+
+        .pricing {
+            padding: 8rem 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, #f9fafb 0%, #ffffff 100%);
+        }
+
+        .pricing h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .pricing .cta {
+            margin: 2rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .comparison table {
+                font-size: 0.9rem;
+            }
+
+            .comparison td, .comparison th {
+                padding: 1rem;
+            }
+        }
+
+        /* Update footer styles */
+        .footer {
+            background: var(--bg-white);
+            color: var(--text-secondary);
+            padding: 4rem 2rem 2rem;
+            border-top: 1px solid #eee;
+        }
+
+        .footer-content {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-section h4 {
+            color: var(--lime);
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-section p {
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--lime);
+        }
+
+        .footer-bottom {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #eee;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="#" class="logo">🍋 Lemon</a>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#comparison">Compare</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content" data-aos="fade-up">
+            <h1>Squeeze More Out of<br>Every Order</h1>
+            <p>The all-in-one restaurant platform that puts small businesses first. Powerful POS, custom apps, and smart payments.</p>
+            <a href="#contact" class="cta">Get Started</a>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="feature-grid">
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="0">
+                <h3>Lemon POS</h3>
+                <p>Cloud-based point of sale starting at $49/month. Run your restaurant on affordable tablets and save hundreds compared to traditional systems.</p>
+            </div>
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                <h3>Lemon Apps</h3>
+                <p>Your restaurant's custom-branded mobile app, automatically generated from your POS. Deliver a premium digital experience without the premium price tag.</p>
+            </div>
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                <h3>Lemon Gift Network</h3>
+                <p>Join our cross-restaurant gift card network. Turn idle cash into working capital and expand your customer base across our entire network.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="comparison" id="comparison" data-aos="fade-up">
+        <h2>Why Choose Lemon?</h2>
+        <table>
+            <tr>
+                <th>Feature</th>
+                <th>Lemon</th>
+                <th>Toast</th>
+            </tr>
+            <tr>
+                <td>Monthly Cost</td>
+                <td>$49-$79</td>
+                <td>$79-$165+</td>
+            </tr>
+            <tr>
+                <td>Hardware Cost</td>
+                <td>$100-$200</td>
+                <td>$500+</td>
+            </tr>
+            <tr>
+                <td>Support</td>
+                <td>24/7 Human Support</td>
+                <td>Limited Support</td>
+            </tr>
+            <tr>
+                <td>Custom App</td>
+                <td>✓</td>
+                <td>✗</td>
+            </tr>
+            <tr>
+                <td>Gift Card Network</td>
+                <td>✓</td>
+                <td>✗</td>
+            </tr>
+        </table>
+    </section>
+
+    <section class="pricing" id="contact" data-aos="fade-up">
+        <h2>Ready to grow your restaurant?</h2>
+        <p>Schedule a demo today and see how Lemon can transform your business.</p>
+        <a href="#" class="cta">Contact Sales</a>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Contact Us</h4>
+                <p>123 Restaurant Row</p>
+                <p>Portland, OR 97201</p>
+                <p>Phone: (503) 123-4567</p>
+                <p>Email: hello@lemonpay.com</p>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#comparison">Compare</a></li>
+                    <li><a href="#contact">Contact Sales</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Products</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Lemon Pay</a></li>
+                    <li><a href="#">Lemon Apps</a></li>
+                    <li><a href="#">Gift Network</a></li>
+                    <li><a href="#">Integrations</a></li>
+                    <li><a href="#">API Documentation</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 Lemon Pay LLC. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+    </script>
+</body>
+</html> 
